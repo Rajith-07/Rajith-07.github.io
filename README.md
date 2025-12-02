@@ -1,7 +1,6 @@
-<<<<<<< HEAD
 # Rajith S — Portfolio
 
-Personal portfolio highlighting AI, ML, IoT, and full-stack work. Built with Next.js 16 (App Router), Tailwind CSS 4, and Framer Motion for immersive dark-mode storytelling.
+----
 
 ## Features
 
@@ -10,6 +9,8 @@ Personal portfolio highlighting AI, ML, IoT, and full-stack work. Built with Nex
 - Responsive layout with smooth scrolling interactions
 - Contact form, social links, and GitHub-ready project cards
 - GitHub Pages static export pipeline (Next.js `output: "export"`) with automated workflow
+
+----
 
 ## Local Development
 
@@ -66,7 +67,3 @@ The form sends two emails:
 - Update hero/about copy and media assets inside `src/app/page.tsx` and `src/components/sections/*`.
 - Adjust theme/glow styles in `src/app/globals.css`.
 - Project/experience/research data is centralized in `src/app/page.tsx` for quick iteration.
-=======
-# Portfolio
-My portfolio site repo. Built because resume wasn’t enough.
->>>>>>> 45e36798b77c4bb82e9c89831b7cbce47fa18380
