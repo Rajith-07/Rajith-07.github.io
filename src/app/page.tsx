@@ -120,7 +120,7 @@ const research: ResearchItem[] = [
 const socials: ContactSocial[] = [
   {
     label: "Phone",
-    href: "mailto:rajiths",
+    href: "tel:+919342606595",
     icon: "email",
   },
   {
