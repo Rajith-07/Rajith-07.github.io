@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Rajith S — Portfolio
 
-## Getting Started
+Personal portfolio highlighting AI, ML, IoT, and full-stack work. Built with Next.js 16 (App Router), Tailwind CSS 4, and Framer Motion for immersive dark-mode storytelling.
 
-First, run the development server:
+## Features
+
+- Hero, About, Skills, Projects, Experience, Research, and Contact sections
+- Framer Motion page + section transitions, glassmorphism surfaces, and subtle gradients
+- Responsive layout with smooth scrolling interactions
+- Contact form, social links, and GitHub-ready project cards
+- GitHub Pages static export pipeline (Next.js `output: "export"`) with automated workflow
+
+## Local Development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# open http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Linting & Production Builds
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run lint        # ESLint
+npm run build       # Next.js production build
+npm run export      # Static export to /out for GitHub Pages
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Deploying to GitHub Pages
 
-## Learn More
+1. Push to `main`. The provided workflow (`.github/workflows/deploy.yml`) installs deps, runs `npm run export`, and publishes the `/out` folder to GitHub Pages.
+2. Ensure GitHub Pages is set to use “GitHub Actions” in your repository settings.
+3. For project pages (`username.github.io/<repo>`), the `next.config.ts` automatically derives the correct `basePath`/`assetPrefix` during Actions builds. For custom domains or subpaths, override with `NEXT_PUBLIC_BASE_PATH`.
+4. To run the export locally, execute `npm run export` and serve the contents of `out/` with any static file server.
 
-To learn more about Next.js, take a look at the following resources:
+## Email Configuration (Contact Form)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The contact form uses Nodemailer to send emails. To enable it:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Create a `.env.local` file in the root directory:
+```env
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_SECURE=false
+SMTP_USER=your-email@gmail.com
+SMTP_PASS=your-app-password
+CONTACT_EMAIL=rajithsrr@gmail.com
+```
 
-## Deploy on Vercel
+2. **For Gmail:**
+   - Enable 2-Step Verification on your Google account
+   - Generate an App Password at: https://myaccount.google.com/apppasswords
+   - Use the App Password (not your regular password) for `SMTP_PASS`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3. **For other email providers:**
+   - Update `SMTP_HOST`, `SMTP_PORT`, and `SMTP_SECURE` accordingly
+   - Use your provider's SMTP credentials
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The form sends two emails:
+- **Notification email** to you (`CONTACT_EMAIL`) with the user's message
+- **Thank you email** to the user confirming their message was received
+
+## Customization Tips
+
+- Update hero/about copy and media assets inside `src/app/page.tsx` and `src/components/sections/*`.
+- Adjust theme/glow styles in `src/app/globals.css`.
+- Project/experience/research data is centralized in `src/app/page.tsx` for quick iteration.
