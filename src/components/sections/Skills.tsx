@@ -115,6 +115,49 @@ const colorMap: Record<string, string> = {
   "VS Code": "#007ACC",
 };
 
+const MarqueeRow = ({
+  items,
+  reverse = false,
+  speed = 30,
+  onRowClick,
+}: {
+  items: string[];
+  reverse?: boolean;
+  speed?: number;
+  onRowClick: (items: string[]) => void;
+}) => {
+  const duplicatedItems = [...items, ...items, ...items, ...items];
+
+  return (
+    <div 
+      className="group flex cursor-pointer overflow-hidden transition-all hover:bg-black/5"
+      onClick={() => onRowClick(items)}
+      style={{ WebkitTapHighlightColor: "transparent" }}
+    >
+      <motion.div
+        animate={{ x: reverse ? ["-50%", "0%"] : ["0%", "-50%"] }}
+        transition={{ repeat: Infinity, ease: "linear", duration: speed }}
+        className="flex w-max items-center gap-4 py-4 sm:gap-6 sm:py-5"
+      >
+        {duplicatedItems.map((item, idx) => {
+          const Icon = iconMapping[item] || FiCpu;
+          return (
+            <div
+              key={`${item}-${idx}`}
+              className="flex shrink-0 items-center justify-center gap-3 rounded-full border border-slate-200/60 bg-white px-6 py-3 shadow-sm transition-all duration-300 hover:scale-[1.03] hover:border-slate-300 hover:shadow-md"
+            >
+              <Icon className="h-5 w-5 text-slate-400 transition-colors duration-300 group-hover:text-slate-900" />
+              <span className="text-sm font-semibold uppercase tracking-widest text-slate-500 transition-colors duration-300 group-hover:text-slate-900">
+                {item}
+              </span>
+            </div>
+          );
+        })}
+      </motion.div>
+    </div>
+  );
+};
+
 export function Skills({ categories }: { categories: SkillCategory[] }) {
   const [selectedRowItems, setSelectedRowItems] = useState<string[] | null>(null);
 
@@ -126,48 +169,6 @@ export function Skills({ categories }: { categories: SkillCategory[] }) {
   const row1 = uniqueItems.slice(0, 11);
   const row2 = uniqueItems.slice(11, 22);
   const row3 = uniqueItems.slice(22);
-
-  const MarqueeRow = ({
-    items,
-    reverse = false,
-    speed = 30,
-  }: {
-    items: string[];
-    reverse?: boolean;
-    speed?: number;
-  }) => {
-    const duplicatedItems = [...items, ...items, ...items, ...items];
-
-    return (
-      <div 
-        className="group flex cursor-pointer overflow-hidden transition-all hover:bg-black/5"
-        onClick={() => setSelectedRowItems(items)}
-        style={{ WebkitTapHighlightColor: "transparent" }}
-      >
-        <motion.div
-          animate={{ x: reverse ? ["-50%", "0%"] : ["0%", "-50%"] }}
-          transition={{ repeat: Infinity, ease: "linear", duration: speed }}
-          className="flex w-max items-center gap-4 py-4 sm:gap-6 sm:py-5"
-        >
-          {duplicatedItems.map((item, idx) => {
-            const Icon = iconMapping[item] || FiCpu;
-            return (
-              <div
-                key={`${item}-${idx}`}
-                className="flex shrink-0 items-center justify-center gap-3 rounded-full border border-slate-200/60 bg-white px-6 py-3 shadow-sm transition-all duration-300 hover:scale-[1.03] hover:border-slate-300 hover:shadow-md"
-              >
-                <Icon className="h-5 w-5 text-slate-400 transition-colors duration-300 group-hover:text-slate-900" />
-                <span className="text-sm font-semibold uppercase tracking-widest text-slate-500 transition-colors duration-300 group-hover:text-slate-900">
-                  {item}
-                </span>
-              </div>
-            );
-          })}
-        </motion.div>
-      </div>
-    );
-  };
-
   return (
     <>
       <section id="skills" className="relative mt-24 space-y-12">
@@ -182,9 +183,9 @@ export function Skills({ categories }: { categories: SkillCategory[] }) {
           <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-[#F2F0E6] to-transparent sm:w-32" />
           <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-[#F2F0E6] to-transparent sm:w-32" />
 
-          <MarqueeRow items={row1} speed={120} />
-          <MarqueeRow items={row2} reverse={true} speed={105} />
-          <MarqueeRow items={row3} speed={135} />
+          <MarqueeRow items={row1} speed={120} onRowClick={setSelectedRowItems} />
+          <MarqueeRow items={row2} reverse={true} speed={105} onRowClick={setSelectedRowItems} />
+          <MarqueeRow items={row3} speed={135} onRowClick={setSelectedRowItems} />
         </div>
       </section>
 

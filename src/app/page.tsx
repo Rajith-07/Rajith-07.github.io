@@ -191,7 +191,7 @@ const socials: ContactSocial[] = [
   },
   {
     label: "LinkedIn",
-    href: "https://www.linkedin.com/in/rajith-s-582697235/",
+    href: "https://www.linkedin.com/in/rajith--s/",
     icon: "linkedin",
   },
   {
