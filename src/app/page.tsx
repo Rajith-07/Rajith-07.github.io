@@ -165,15 +165,16 @@ const experiences: ExperienceItem[] = [
 const research: ResearchItem[] = [
   {
     title: "Deep Learning Architectures for Skin Lesion Classification",
-    status: "Ongoing",
     summary:
       "Investigating hybrid CNN-transformer ensembles with dermoscopy augmentations to push melanoma detection accuracy and trust.",
+    link: "https://doi.org/10.1109/ICISCoIS62701.2026.11447666"
   },
   {
     title: "Reversible ALU Design Using Quantum Gates",
     status: "Ongoing",
     summary:
       "Exploring low-power reversible logic blocks using quantum gate primitives to architect energy-efficient ALUs for edge devices.",
+    link: ""
   },
 ];
 
