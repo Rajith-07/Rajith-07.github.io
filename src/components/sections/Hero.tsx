@@ -14,7 +14,7 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="relative flex min-h-[100svh] items-center justify-center"
+      className="relative flex min-h-[85svh] items-center justify-center pt-12"
     >
       <motion.div
         className="relative flex w-full max-w-4xl flex-col items-start gap-8 text-left"
@@ -37,8 +37,8 @@ export function Hero() {
           Rajith S
         </p> */}
         <div className="space-y-4">
-          <h1 className="text-4xl font-semibold leading-tight text-slate-900 sm:text-5xl lg:text-6xl">
-            <span className="hero-highlight relative inline-block">
+          <h1 className="text-4xl font-semibold leading-tight text-black sm:text-5xl lg:text-6xl">
+            <span className="hero-highlight relative inline-block text-black">
               RAJITH S
               <span className="underline-accent" />
             </span>
@@ -48,19 +48,35 @@ export function Hero() {
           </p>
         </div>
         <p className="max-w-2xl text-lg text-slate-600">
-        Designing modern software systems that integrate high-quality engineering practices, cloud and DevOps workflows, advanced networking, and AI-enhanced intelligence. Dedicated to creating scalable, resilient, and efficient solutions tailored for real-world impact.
+        Designing modern software systems that integrate high-quality engineering practices, Cloud and DevOps workflows, advanced networking, and AI-enhanced intelligence. Dedicated to creating scalable, resilient, and efficient solutions tailored for real-world impact.
         </p>
-        <motion.button
-          whileHover={{ scale: 1.04, y: -2 }}
-          whileTap={{ scale: 0.98 }}
-          onClick={() => window.open("https://github.com/rajith-07", "_blank")}
-          className="group inline-flex items-center gap-3 rounded-full border border-slate-200 bg-white px-6 py-3 text-sm font-semibold uppercase tracking-widest text-slate-700 transition-all hover:border-slate-400 hover:shadow-md"
-        >
-          View Projects on GitHub
-          <span className="text-lg transition-transform group-hover:translate-x-1">
-            ↗
-          </span>
-        </motion.button>
+        <div className="flex flex-wrap items-center gap-4">
+          <motion.a
+            href="/Rajith_S.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.04, y: -2 }}
+            whileTap={{ scale: 0.98 }}
+            className="group inline-flex items-center gap-3 rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold uppercase tracking-widest text-white shadow-md transition-all hover:bg-slate-800 hover:shadow-lg"
+          >
+            Download Resume
+            <span className="text-lg transition-transform group-hover:translate-y-1">
+              ↓
+            </span>
+          </motion.a>
+
+          <motion.button
+            whileHover={{ scale: 1.04, y: -2 }}
+            whileTap={{ scale: 0.98 }}
+            onClick={() => window.open("https://github.com/rajith-07", "_blank")}
+            className="group inline-flex items-center gap-3 rounded-full border border-slate-200 bg-white px-6 py-3 text-sm font-semibold uppercase tracking-widest text-slate-700 transition-all hover:border-slate-400 hover:shadow-md"
+          >
+            View Projects on GitHub
+            <span className="text-lg transition-transform group-hover:translate-x-1">
+              ↗
+            </span>
+          </motion.button>
+        </div>
       </motion.div>
     </section>
   );

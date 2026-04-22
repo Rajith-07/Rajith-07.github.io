@@ -33,6 +33,9 @@ export const metadata: Metadata = {
   },
 };
 
+import { ParticleBackground } from "@/components/ParticleBackground";
+import { NavBar } from "@/components/NavBar";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -43,6 +46,8 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[color:var(--background)] text-[color:var(--foreground)]`}
       >
+        <NavBar />
+        <ParticleBackground />
         <ScrollControls />
         <div className="relative flex min-h-screen justify-center px-4 py-10 sm:px-8 lg:px-12">
           <div className="z-10 w-full">{children}</div>

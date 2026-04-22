@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useState, type FormEvent } from "react";
-import { FaGithub, FaLinkedin } from "react-icons/fa6";
+import { FaGithub, FaLinkedin, FaPhone } from "react-icons/fa6";
 import { MdAlternateEmail } from "react-icons/md";
 
 export type ContactSocial = {
@@ -88,7 +88,7 @@ export function Contact({ email, socials }: ContactProps) {
       </div>
       <div className="mt-6 flex justify-center gap-4">
         {socials.map((social) => {
-          const Icon = social.icon === "linkedin" ? FaLinkedin : (social.icon === "github" ? FaGithub : MdAlternateEmail);
+          const Icon = social.icon === "linkedin" ? FaLinkedin : (social.icon === "github" ? FaGithub : (social.icon === "phone" ? FaPhone : MdAlternateEmail));
           return (
             <motion.a
               key={social.label}
