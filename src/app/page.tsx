@@ -41,22 +41,27 @@ const summary = (
 
 
 const skills: SkillCategory[] = [
-  { category: "Programming", items: ["Python", "C", "C++", "Java", "JavaScript", "SQL"] },
   {
-    category: "Frontend",
-    items: ["HTML", "CSS", "Tailwind", "Bootstrap", "React", "Next.js"],
-  },
-  { category: "Backend", items: ["Node.js", "Express.js"] },
-  { category: "Databases", items: ["MySQL", "PostgreSQL", "MongoDB", "Firebase"] },
-  {
-    category: "ML & AI",
-    items: ["TensorFlow", "PyTorch", "scikit-learn", "OpenCV", "Pandas", "NumPy"],
+    category: "Backend & AI/ML",
+    items: [
+      "Python", "Java", "C", "C++", "SQL", "MySQL", "PostgreSQL", "MongoDB", 
+      "TensorFlow", "PyTorch", "scikit-learn", "OpenCV", "Pandas", "NumPy"
+    ],
   },
   {
     category: "Cloud & DevOps",
-    items: ["Docker", "Kubernetes", "Jenkins", "GitHub Actions", "CI/CD"],
+    items: [
+      "Docker", "Kubernetes", "Jenkins", "GitHub Actions", "CI/CD", 
+      "Git", "GitHub", "GitLab", "VS Code"
+    ],
   },
-  { category: "Tools", items: ["Git", "GitHub", "GitLab", "VS Code"] },
+  {
+    category: "Web & App Dev",
+    items: [
+      "HTML", "CSS", "JavaScript", "Tailwind", "Bootstrap", 
+      "React", "Next.js", "Node.js", "Express.js", "Firebase"
+    ],
+  },
 ];
 
 // const projects: Project[] = [
@@ -116,7 +121,7 @@ const projects: Project[] = [
     title: "Smart Toll System",
     description:
       "Automated toll collection system leveraging real-time vehicle detection and seamless transaction processing.",
-    tools: ["IoT", "Embedded Systems", "Backend APIs"], 
+    tools: ["IoT", "Embedded Systems", "Zigbee", "Backend APIs"], 
     github: "https://github.com/lithigesh/smart-toll",
     image: "https://images.unsplash.com/photo-1506521781263-d8422e82f27a?auto=format&fit=crop&w=1000&q=80",
   },
@@ -165,15 +170,15 @@ const experiences: ExperienceItem[] = [
 const research: ResearchItem[] = [
   {
     title: "Deep Learning Architectures for Skin Lesion Classification",
-    summary:
-      "Investigating hybrid CNN-transformer ensembles with dermoscopy augmentations to push melanoma detection accuracy and trust.",
+    subheading: "A Comparative Study of CNN, Transformer and Hybrid Models",
+    conference: "IEEE ICISCoIS 2026",
     link: "https://doi.org/10.1109/ICISCoIS62701.2026.11447666"
   },
   // {
   //   title: "Reversible ALU Design Using Quantum Gates",
   //   status: "Ongoing",
-  //   summary:
-  //     "Exploring low-power reversible logic blocks using quantum gate primitives to architect energy-efficient ALUs for edge devices.",
+  //   authors: "Rajith S.",
+  //   conference: "TBD",
   //   link: ""
   // },
 ];

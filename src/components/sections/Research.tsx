@@ -5,8 +5,9 @@ import { FiArrowRight } from "react-icons/fi";
 
 export type ResearchItem = {
   title: string;
+  subheading?: string;
   status?: string;
-  summary: string;
+  conference: string;
   link?: string;
 };
 
@@ -48,22 +49,31 @@ export function Research({ studies }: { studies: ResearchItem[] }) {
             </div>
             
             {/* Right side: Content */}
-            <div className="flex-1 space-y-4">
-              {study.link ? (
-                <a href={study.link} target="_blank" rel="noopener noreferrer" className="block w-fit">
-                  <h3 className="text-2xl font-bold leading-tight tracking-tight text-slate-900 transition-colors hover:text-blue-600 group-hover:text-blue-950 sm:text-3xl text-balance">
+            <div className="flex-1 flex flex-col gap-1.5">
+              <div className="flex flex-col gap-1.5">
+                {study.link ? (
+                  <a href={study.link} target="_blank" rel="noopener noreferrer" className="block w-fit">
+                    <h3 className="text-2xl font-bold leading-tight tracking-tight text-slate-900 transition-colors hover:text-blue-600 group-hover:text-blue-950 sm:text-3xl text-balance">
+                      {study.title}
+                    </h3>
+                  </a>
+                ) : (
+                  <h3 className="text-2xl font-bold leading-tight tracking-tight text-slate-900 transition-colors group-hover:text-blue-950 sm:text-3xl text-balance">
                     {study.title}
                   </h3>
-                </a>
-              ) : (
-                <h3 className="text-2xl font-bold leading-tight tracking-tight text-slate-900 transition-colors group-hover:text-blue-950 sm:text-3xl text-balance">
-                  {study.title}
-                </h3>
-              )}
+                )}
+                {study.subheading && (
+                  <h4 className="text-xl font-semibold tracking-tight text-slate-700 sm:text-2xl">
+                    {study.subheading}
+                  </h4>
+                )}
+              </div>
               
-              <p className="text-base leading-relaxed text-slate-600 text-pretty">
-                {study.summary}
-              </p>
+              <div className="mt-1 sm:mt-1.5">
+                <p className="text-lg leading-relaxed text-slate-400 italic">
+                  {study.conference}
+                </p>
+              </div>
             </div>
           </motion.div>
         ))}

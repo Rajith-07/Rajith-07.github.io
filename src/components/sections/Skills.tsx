@@ -119,19 +119,19 @@ const MarqueeRow = ({
   items,
   reverse = false,
   speed = 30,
-  onRowClick,
+  onClick,
 }: {
   items: string[];
   reverse?: boolean;
   speed?: number;
-  onRowClick: (items: string[]) => void;
+  onClick: () => void;
 }) => {
   const duplicatedItems = [...items, ...items, ...items, ...items];
 
   return (
     <div 
       className="group flex cursor-pointer overflow-hidden transition-all hover:bg-black/5"
-      onClick={() => onRowClick(items)}
+      onClick={onClick}
       style={{ WebkitTapHighlightColor: "transparent" }}
     >
       <motion.div
@@ -159,16 +159,10 @@ const MarqueeRow = ({
 };
 
 export function Skills({ categories }: { categories: SkillCategory[] }) {
-  const [selectedRowItems, setSelectedRowItems] = useState<string[] | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<SkillCategory | null>(null);
 
-  // Flatten items and distribute them into 3 visual rows
-  const allItems = categories.flatMap((c) => c.items);
-  // Deduplicate array elements
-  const uniqueItems = Array.from(new Set(allItems));
-  
-  const row1 = uniqueItems.slice(0, 11);
-  const row2 = uniqueItems.slice(11, 22);
-  const row3 = uniqueItems.slice(22);
+  const speeds = [120, 105, 135];
+
   return (
     <>
       <section id="skills" className="relative mt-24 space-y-12">
@@ -183,21 +177,27 @@ export function Skills({ categories }: { categories: SkillCategory[] }) {
           <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-[#F2F0E6] to-transparent sm:w-32" />
           <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-[#F2F0E6] to-transparent sm:w-32" />
 
-          <MarqueeRow items={row1} speed={120} onRowClick={setSelectedRowItems} />
-          <MarqueeRow items={row2} reverse={true} speed={105} onRowClick={setSelectedRowItems} />
-          <MarqueeRow items={row3} speed={135} onRowClick={setSelectedRowItems} />
+          {categories.map((category, index) => (
+            <MarqueeRow 
+              key={category.category}
+              items={category.items} 
+              speed={speeds[index % speeds.length]} 
+              reverse={index % 2 !== 0} 
+              onClick={() => setSelectedCategory(category)} 
+            />
+          ))}
         </div>
       </section>
 
       {/* Modal Overlay */}
       <AnimatePresence>
-        {selectedRowItems && (
+        {selectedCategory && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-[100] flex items-center justify-center bg-black/30 p-4 backdrop-blur-md"
-            onClick={() => setSelectedRowItems(null)}
+            onClick={() => setSelectedCategory(null)}
           >
             <motion.div
               initial={{ scale: 0.95, opacity: 0, y: 20 }}
@@ -208,10 +208,10 @@ export function Skills({ categories }: { categories: SkillCategory[] }) {
             >
               <div className="mb-8 flex items-center justify-between">
                 <h3 className="text-2xl font-bold tracking-tight text-slate-900">
-                  Toolchain Overview
+                  {selectedCategory.category}
                 </h3>
                 <button
-                  onClick={() => setSelectedRowItems(null)}
+                  onClick={() => setSelectedCategory(null)}
                   className="flex h-8 w-8 items-center justify-center rounded-full bg-slate-100 text-slate-500 transition-colors hover:bg-slate-200 hover:text-slate-900"
                 >
                   ✕
@@ -219,7 +219,7 @@ export function Skills({ categories }: { categories: SkillCategory[] }) {
               </div>
 
               <div className="grid grid-cols-3 gap-4 sm:grid-cols-4 md:grid-cols-5">
-                {selectedRowItems.map((item) => {
+                {selectedCategory.items.map((item) => {
                   const Icon = iconMapping[item] || FiCpu;
                   const color = colorMap[item] || "#64748b";
                   return (
@@ -241,7 +241,7 @@ export function Skills({ categories }: { categories: SkillCategory[] }) {
 
               <div className="mt-8 flex justify-end">
                 <button
-                  onClick={() => setSelectedRowItems(null)}
+                  onClick={() => setSelectedCategory(null)}
                   className="rounded-full bg-slate-900 px-6 py-2.5 text-sm font-semibold uppercase tracking-widest text-white transition hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2"
                 >
                   Close
