@@ -48,7 +48,7 @@ export function Hero() {
           </p>
         </div>
         <p className="max-w-2xl text-lg text-slate-600">
-        Designing modern software systems that integrate high-quality engineering practices, Cloud and DevOps workflows, advanced networking, and AI-enhanced intelligence. Dedicated to creating scalable, resilient, and efficient solutions tailored for real-world impact.
+        Designing modern software systems that integrate high-quality engineering practices, Cloud and DevOps workflows, Advanced networking, and AI-enhanced intelligence. Dedicated to creating scalable, resilient, and efficient solutions tailored for real-world impact.
         </p>
         <div className="flex flex-wrap items-center gap-4">
           <motion.a

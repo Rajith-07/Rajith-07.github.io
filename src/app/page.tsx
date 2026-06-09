@@ -169,7 +169,7 @@ const experiences: ExperienceItem[] = [
 
 const research: ResearchItem[] = [
   {
-    title: "Deep Learning Architectures for Skin Lesion Classification",
+    title: "Deep Learning Architectures for Skin Lesion Classification ↗",
     subheading: "A Comparative Study of CNN, Transformer and Hybrid Models",
     conference: "IEEE ICISCoIS 2026",
     link: "https://doi.org/10.1109/ICISCoIS62701.2026.11447666"
